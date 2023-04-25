@@ -1,11 +1,17 @@
 import React,{ useState } from 'react'
 import {Card,Button,Row,Col} from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../actions/cartActon';
 import {BiRupee} from 'react-icons/bi'
 import Modal from 'react-bootstrap/Modal';
 const Menu = ({menu}) => {
     const [varient,setVarient] = useState('small')
     const [quantity,setQuantity] = useState(1)
     const [show, setShow] = useState(false);
+    const dispatch= useDispatch()
+    const addToCartHandler= () => {
+        dispatch(addToCart(menu, quantity, varient))
+    }
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -33,9 +39,9 @@ Style={{width:"1300px",cursor:"pointer",border:"10px solid red"}} onClick={handl
             <Col md={6}>
             <br></br>
                 <h6><em>Quantity</em></h6>
-                <select Style="padding: 10px; background-color:#ffb3b3; border:none;"value={quantity}  onChange={e=>setQuantity(e.target.value)}>
+                <select Style="padding: 10px; background-color:#ffb3b3; border:none;" value={quantity}  onChange={ e=>setQuantity(e.target.value)}>
             {[...Array(10).keys()].map((v,i)=>(
-                <option>{i+1}</option>
+                <option value={i+1} key={i+1}>{i+1}</option>
             ))}
         </select>
             </Col>
@@ -43,10 +49,12 @@ Style={{width:"1300px",cursor:"pointer",border:"10px solid red"}} onClick={handl
     </Card.Text>
     <Row>
         <Col md={6}>
-    <em><b>Price:&nbsp;<BiRupee></BiRupee></b>{menu.prices[0][varient]*quantity}</em>
+    <em><b>Price:&nbsp;<BiRupee></BiRupee></b>{menu.prices[0][varient]*quantity}&nbsp;</em>
         </Col>
         <Col md={6}>
-            <Button className="bg-success text-white">Add to Cart</Button>
+            <Button 
+            onClick={addToCartHandler}
+            className="bg-success text-white">Add to Cart</Button>
         </Col>
     </Row>
 </Card.Body>
