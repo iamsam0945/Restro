@@ -1,11 +1,35 @@
 {
+  "name": "restro",
+  "version": "1.0.0",
+  "description": "restro backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "data:import": "node seeder.js",
+    "client": "npm start --prefix ../client",
+    "dev": "concurrently \"npm run server\" \"npm run client\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamsam0945/Restro.git"
+  },
+  "author": "Sam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iamsam0945/Restro/issues"
+  },
+  "homepage": "https://github.com/iamsam0945/Restro#readme",
   "dependencies": {
-    "react-redux": "^8.0.5",
-    "react-router-dom": "^6.10.0",
-    "react-stripe-checkout": "^2.6.3",
-    "redux": "^4.2.1",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-thunk": "^2.4.2",
-    "router-dom": "^2.2.10"
+    "colors": "^1.4.0",
+    "concurrently": "^8.0.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.4",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.22",
+    "stripe": "^12.2.0",
+    "uuid": "^9.0.0"
   }
 }
